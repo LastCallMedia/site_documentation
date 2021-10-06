@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * Site Documentation module file.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\site_documentation\Entity\SiteDocumentation;
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function site_documentation_module_implements_alter(&$implementations, $hook) {
+  if ($hook === 'help' && isset($implementations['help'])) {
+    unset($implementations['help']);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function site_documentation_theme($existing, $type, $theme, $path) {
+  return [
+    'site_documentation' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function site_documentation_site_documentation_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($build['#view_mode'] !== 'full') {
+    return;
+  }
+  $docs = $entity->get('all_docs')->getValue();
+  $ids = array_flip(array_keys($docs));
+
+  if (isset($ids[$entity->id()])) {
+    unset($ids[$entity->id()]);
+  }
+  $loaded_docs = SiteDocumentation::loadMultiple(array_keys($ids));
+  $build['all_docs'] = \Drupal::entityTypeManager()->getViewBuilder('site_documentation')->viewMultiple($loaded_docs, 'teaser');
+}
+
+/**
+ * Add useful variables for template.
+ */
+function site_documentation_preprocess_site_documentation(&$vars) {
+  $vars['view_mode'] = $vars['elements']['#view_mode'];
+  // Helpful $content variable for templates.
+  $vars += ['content' => []];
+  foreach (Element::children($vars['elements']) as $key) {
+    $vars['content'][$key] = $vars['elements'][$key];
+  }
+
+}
+
+/**
+ * Implements hook_help_section_info_alter().
+ */
+function site_documentation_help_section_info_alter(array &$info) {
+  foreach ($info as $plugin_id => $plugin_info) {
+    if (empty($info[$plugin_id]['permission'])) {
+      $info[$plugin_id]['permission'] = 'access ' . $plugin_id . ' help section';
+    }
+  }
+}

@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.site_documentation.site_documentation.field_documentation
+    - field.field.site_documentation.site_documentation.field_related_documentation
+  module:
+    - site_documentation
+    - text
+id: site_documentation.site_documentation.default
+targetEntityType: site_documentation
+bundle: site_documentation
+mode: default
+content:
+  field_documentation:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_related_documentation:
+    weight: 3
+    label: above
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_label
+    weight: 1
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+hidden: {  }

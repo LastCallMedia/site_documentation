@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - site_documentation
+id: site_documentation.field_related_documentation
+field_name: field_related_documentation
+entity_type: site_documentation
+type: entity_reference
+settings:
+  target_type: site_documentation
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

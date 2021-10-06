@@ -1,0 +1,54 @@
+{#
+/**
+ * @file site_documentation.html.twig
+ * Default theme implementation to present Site Documentation data.
+ *
+ * This template is used when viewing Site Documentation pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_site_documentation()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div{{ attributes.addClass('site_documentation') }}>
+    {% if view_mode == 'full' %}
+
+        <div style="display: flex; justify-content: space-around">
+            {% if content %}
+                <div style="width:75%; max-width: 600px;">
+                    {{content|without('all_docs')}}
+                </div>
+            {% endif %}
+
+            {% if content.all_docs %}
+                <div style="width:20%;">
+                    <fieldset>
+                        <legend>{{ 'All Documentation'|t }}</legend>
+                        <div>
+                            {{ content.all_docs }}
+                        </div>
+                    </fieldset>
+                    {#                  <h2>All Documentation</h2>#}
+
+                </div>
+            {% endif %}
+        </div>
+
+    {% else %}
+
+
+
+
+        {% if content %}
+            {{content}}
+        {% endif %}
+
+    {% endif %}
+</div>
+

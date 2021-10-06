@@ -1,0 +1,16 @@
+{
+  "name": "lastcall/site_documentation",
+  "type": "drupal-module",
+  "description": "Allows content to be added to help section as documentation",
+  "homepage": "https://github.com/LastCallMedia/SiteDocumentation",
+  "support": {
+    "issues": "https://github.com/LastCallMedia/SiteDocumentation/issues",
+    "source": "https://github.com/LastCallMedia/SiteDocumentation"
+  },
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "require": {
+    "drupal/core": "^9",
+    "drupal/entity": "^1.2"
+  }
+}

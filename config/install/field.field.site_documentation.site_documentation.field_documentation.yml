@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.site_documentation.field_documentation
+  module:
+    - site_documentation
+    - text
+id: site_documentation.site_documentation.field_documentation
+field_name: field_documentation
+entity_type: site_documentation
+bundle: site_documentation
+label: Documentation
+description: "<strong>Summary</strong>: A brief description of what will appear on the help page.<br>\r\n<strong>Documentation</strong>: The actual help article that the user will see when they view this content directly."
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: true
+field_type: text_with_summary

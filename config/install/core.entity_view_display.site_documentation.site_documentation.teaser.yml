@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.site_documentation.teaser
+    - field.field.site_documentation.site_documentation.field_documentation
+    - field.field.site_documentation.site_documentation.field_related_documentation
+  module:
+    - site_documentation
+    - text
+id: site_documentation.site_documentation.teaser
+targetEntityType: site_documentation
+bundle: site_documentation
+mode: teaser
+content:
+  field_documentation:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    type: text_summary_or_trimmed
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+hidden:
+  field_related_documentation: true
+  user_id: true

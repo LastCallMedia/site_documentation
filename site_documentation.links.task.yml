@@ -1,0 +1,26 @@
+# Site Documentation routing definition
+entity.site_documentation.collection:
+  route_name: entity.site_documentation.collection
+  base_route: entity.site_documentation.collection
+  title: 'Site Documentation'
+
+entity.site_documentation.canonical:
+  route_name: entity.site_documentation.canonical
+  base_route: entity.site_documentation.canonical
+  title: 'View'
+
+entity.site_documentation.edit_form:
+  route_name: entity.site_documentation.edit_form
+  base_route: entity.site_documentation.canonical
+  title: 'Edit'
+
+entity.site_documentation.version_history:
+  route_name: entity.site_documentation.version_history
+  base_route: entity.site_documentation.canonical
+  title: 'Revisions'
+
+entity.site_documentation.delete_form:
+  route_name:  entity.site_documentation.delete_form
+  base_route:  entity.site_documentation.canonical
+  title: Delete
+  weight: 10

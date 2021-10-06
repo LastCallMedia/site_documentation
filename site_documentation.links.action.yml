@@ -1,0 +1,5 @@
+entity.site_documentation.add_form:
+  route_name: entity.site_documentation.add_form
+  title: 'Add Site Documentation'
+  appears_on:
+    - help.main
