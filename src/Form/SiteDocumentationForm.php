@@ -58,13 +58,13 @@ class SiteDocumentationForm extends ContentEntityForm {
       $form['new_revision']['#default_value'] = TRUE;
     }
 
-//    foreach (['status', 'new_revision', 'revision_log', 'user_id'] as $weight => $index) {
-//      if (isset($form[$index])) {
-//        $form['publishing_information'][$index] = $form[$index];
-//        $form['publishing_information'][$index]['#weight'] = $weight;
-//        unset($form[$index]);
-//      }
-//    }
+    foreach (['status', 'new_revision', 'revision_log', 'user_id'] as $weight => $index) {
+      if (isset($form[$index])) {
+        $form['publishing_information'][$index] = $form[$index];
+        $form['publishing_information'][$index]['#weight'] = $weight;
+        unset($form[$index]);
+      }
+    }
 
     return $form;
   }
