@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for site_documentation.
+ */
+
+/**
+ * Updates for v0.0.2
+ *
+ * Update entity definitions and reimport default configuration for
+ * so views-based display gets added.
+ */
+function site_documentation_update_9002() {
+  $config_factory = \Drupal::configFactory();
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $config_installer = \Drupal::service('config.installer');
+
+  // Delete config for field_related_documentation.
+  $configs = [
+    'field.field.site_documentation.site_documentation.field_related_documentation',
+    'field.storage.site_documentation.field_related_documentation'
+  ];
+  foreach ($configs as $config) {
+    $field_config = $config_factory->getEditable($config);
+    if ($field_config) {
+      $field_config->delete();
+    }
+  }
+
+  // Update entity definition of site_documentation.
+  $sd_definition = $entity_type_manager->getDefinition('site_documentation');
+  $entity_definition_update_manager->updateEntityType($sd_definition);
+
+  // Install default configuration for module.
+  $config_installer->installDefaultConfig('module', 'site_documentation');
+
+}

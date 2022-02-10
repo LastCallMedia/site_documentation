@@ -158,7 +158,6 @@ class SiteDocumentation extends EditorialContentEntityBase {
     return parent::save();
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -236,12 +235,6 @@ class SiteDocumentation extends EditorialContentEntityBase {
       ->setReadOnly(TRUE)
       ->setRevisionable(TRUE)
       ->setTranslatable(TRUE);
-
-    $fields['all_docs'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel('Computed Reference Field Test')
-      ->setComputed(TRUE)
-      ->setSetting('target_type', 'site_documentation')
-      ->setClass(DocsListing::class);
 
     return $fields;
   }
