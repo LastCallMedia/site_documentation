@@ -40,21 +40,26 @@ function site_documentation_theme($existing, $type, $theme, $path) {
  * Implements hook_entity_type_build().
  */
 function site_documentation_site_documentation_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-  if ($build['#view_mode'] !== 'full') {
+  if ($build['#view_mode'] !== 'full'
+    || !$entity->hasField('field_documentation_topics')
+    || !$entity->get('field_documentation_topics')->isEmpty()
+    || !Views::getView('related_site_documents')
+  ) {
     return;
   }
 
-  $topics = $entity->get('field_documentation_topics')->getValue();
-  if (!empty($topics[0]['target_id'])) {
-    $args = [$topics[0]['target_id'], $entity->id()];
-    $view = Views::getView('related_site_documents');
-    if (is_object($view)) {
-      $view->setArguments($args);
-      $view->setDisplay('block_1');
-      $view->preExecute();
-      $view->execute();
-      $build['related_docs'] = $view->buildRenderable('block_1', $args);
-    }
+  $topics = array_map(function ($topic) {
+    return $topic['target_id'];
+  }, $entity->get('field_documentation_topics')->getValue());
+
+  if (!empty($topics)) {
+    $build['related_docs'] = [
+      '#type' => 'view',
+      '#name' => 'related_site_documents',
+      '#display_id' => 'block_1',
+      '#embed' => TRUE,
+      '#arguments' => [implode('+', $topics), $entity->id()],
+    ];
   }
 }
 
@@ -62,7 +67,6 @@ function site_documentation_site_documentation_view(array &$build, EntityInterfa
  * Add useful variables for template.
  */
 function site_documentation_preprocess_site_documentation(&$vars) {
-
   $vars['view_mode'] = $vars['elements']['#view_mode'];
   // Helpful $content variable for templates.
   $vars += ['content' => []];
@@ -75,14 +79,21 @@ function site_documentation_preprocess_site_documentation(&$vars) {
  * Implements hook_preprocess_HOOK().
  */
 function site_documentation_preprocess_help_section__site_documentation(&$vars) {
-  $vars['documents_view'] = get_all_documentations_view();
+  if (Views::getView('related_site_documents')) {
+    $vars['documents_view'] = [
+      '#type' => 'view',
+      '#name' => 'related_site_documents',
+      '#display_id' => 'block_2',
+      '#embed' => TRUE,
+      '#arguments' => [],
+    ];
+  }
 }
 
 /**
  * Implements hook_help_section_info_alter().
  */
 function site_documentation_help_section_info_alter(array &$info) {
-
   foreach ($info as $plugin_id => $plugin_info) {
     if (empty($info[$plugin_id]['permission'])) {
       $info[$plugin_id]['permission'] = 'access ' . $plugin_id . ' help section';
@@ -103,19 +114,4 @@ function site_documentation_theme_suggestions_alter(array &$suggestions, array $
     $suggestions[] = 'help_section__site_documentation';
     $variables['theme_hook_original'] = 'help_section__site_documentation';
   }
-}
-
-/**
- * Helper function. Gets all site documentations list renderable array
- * @return array|null
- */
-function get_all_documentations_view() {
-  $view = Views::getView('related_site_documents');
-  if (is_object($view)) {
-    $view->setDisplay('block_2');
-    $view->preExecute();
-    $view->execute();
-    return $view->buildRenderable('block_2', []);
-  }
-  return [];
 }
