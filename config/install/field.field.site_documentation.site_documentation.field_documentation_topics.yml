@@ -13,7 +13,7 @@ entity_type: site_documentation
 bundle: site_documentation
 label: Topics
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -25,6 +25,6 @@ settings:
     sort:
       field: name
       direction: asc
-    auto_create: false
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference
