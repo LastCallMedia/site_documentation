@@ -179,6 +179,7 @@ class SiteDocumentation extends EditorialContentEntityBase {
         'label' => 'hidden',
         'type' => 'author',
         'weight' => 0,
+        'region' => 'hidden'
       ])
       ->setDisplayOptions('form', [
         'type' => 'entity_reference_autocomplete',
@@ -190,8 +191,8 @@ class SiteDocumentation extends EditorialContentEntityBase {
           'placeholder' => '',
         ],
       ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))

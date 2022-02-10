@@ -1,0 +1,8 @@
+uuid: 8d44944d-d619-46aa-bc0f-42a22124159b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Documentation Topics'
+vid: documentation_topics
+description: 'Use topics to group help documentations on similar topics into categories.'
+weight: 0

@@ -1,12 +1,15 @@
+uuid: d0f31813-9796-41c7-9754-dbaada6bda80
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.site_documentation.site_documentation.field_documentation
-    - field.field.site_documentation.site_documentation.field_related_documentation
+    - field.field.site_documentation.site_documentation.field_documentation_topics
   module:
     - site_documentation
     - text
+_core:
+  default_config_hash: sRsJLcDDRJMxxIwYaTrFCzqQQasGEJJtIrAyu3hHwRM
 id: site_documentation.site_documentation.default
 targetEntityType: site_documentation
 bundle: site_documentation
@@ -19,14 +22,13 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_related_documentation:
+  field_documentation_topics:
     weight: 3
-    label: above
+    label: hidden
     settings:
-      view_mode: teaser
-      link: false
+      link: true
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: entity_reference_label
     region: content
   name:
     label: hidden

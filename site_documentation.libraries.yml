@@ -1,0 +1,4 @@
+site_documentations_list:
+  css:
+    theme:
+      css/site_documentation.css: { }

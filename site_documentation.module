@@ -9,6 +9,7 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\site_documentation\Entity\SiteDocumentation;
+use Drupal\views\Views;
 
 /**
  * Implements hook_module_implements_alter().
@@ -27,6 +28,11 @@ function site_documentation_theme($existing, $type, $theme, $path) {
     'site_documentation' => [
       'render element' => 'elements',
     ],
+    'help_section__site_documentation' => [
+      'variables' => [
+        'documents_view' => null,
+      ],
+    ],
   ];
 }
 
@@ -37,36 +43,79 @@ function site_documentation_site_documentation_view(array &$build, EntityInterfa
   if ($build['#view_mode'] !== 'full') {
     return;
   }
-  $docs = $entity->get('all_docs')->getValue();
-  $ids = array_flip(array_keys($docs));
 
-  if (isset($ids[$entity->id()])) {
-    unset($ids[$entity->id()]);
+  $topics = $entity->get('field_documentation_topics')->getValue();
+  if (!empty($topics[0]['target_id'])) {
+    $args = [$topics[0]['target_id'], $entity->id()];
+    $view = Views::getView('related_site_documents');
+    if (is_object($view)) {
+      $view->setArguments($args);
+      $view->setDisplay('block_1');
+      $view->preExecute();
+      $view->execute();
+      $build['related_docs'] = $view->buildRenderable('block_1', $args);
+    }
   }
-  $loaded_docs = SiteDocumentation::loadMultiple(array_keys($ids));
-  $build['all_docs'] = \Drupal::entityTypeManager()->getViewBuilder('site_documentation')->viewMultiple($loaded_docs, 'teaser');
 }
 
 /**
  * Add useful variables for template.
  */
 function site_documentation_preprocess_site_documentation(&$vars) {
+
   $vars['view_mode'] = $vars['elements']['#view_mode'];
   // Helpful $content variable for templates.
   $vars += ['content' => []];
   foreach (Element::children($vars['elements']) as $key) {
     $vars['content'][$key] = $vars['elements'][$key];
   }
+}
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function site_documentation_preprocess_help_section__site_documentation(&$vars) {
+  $vars['documents_view'] = get_all_documentations_view();
 }
 
 /**
  * Implements hook_help_section_info_alter().
  */
 function site_documentation_help_section_info_alter(array &$info) {
+
   foreach ($info as $plugin_id => $plugin_info) {
     if (empty($info[$plugin_id]['permission'])) {
       $info[$plugin_id]['permission'] = 'access ' . $plugin_id . ' help section';
     }
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function site_documentation_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  if ($hook !== 'help_section') {
+    return;
+  }
+
+  if ($variables['title']->render() === 'Site Documentation') {
+    // Both lines below are needed.
+    $suggestions[] = 'help_section__site_documentation';
+    $variables['theme_hook_original'] = 'help_section__site_documentation';
+  }
+}
+
+/**
+ * Helper function. Gets all site documentations list renderable array
+ * @return array|null
+ */
+function get_all_documentations_view() {
+  $view = Views::getView('related_site_documents');
+  if (is_object($view)) {
+    $view->setDisplay('block_2');
+    $view->preExecute();
+    $view->execute();
+    return $view->buildRenderable('block_2', []);
+  }
+  return [];
 }

@@ -1,12 +1,15 @@
+uuid: ef4b3210-8f00-49e5-98e8-c72fc1865f74
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.site_documentation.site_documentation.field_documentation
-    - field.field.site_documentation.site_documentation.field_related_documentation
+    - field.field.site_documentation.site_documentation.field_documentation_topics
   module:
     - site_documentation
     - text
+_core:
+  default_config_hash: 8Zq_HOW0aWtDGkmbju70X4kxGkqjtQrkNHOQeFXJB-8
 id: site_documentation.site_documentation.default
 targetEntityType: site_documentation
 bundle: site_documentation
@@ -22,7 +25,7 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
-  field_related_documentation:
+  field_documentation_topics:
     weight: 27
     settings:
       match_operator: CONTAINS

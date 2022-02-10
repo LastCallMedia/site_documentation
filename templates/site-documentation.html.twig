@@ -15,40 +15,32 @@
  * @ingroup themeable
  */
 #}
+{{ attach_library("site_documentation/site_documentations_list") }}
 
 <div{{ attributes.addClass('site_documentation') }}>
     {% if view_mode == 'full' %}
-
         <div style="display: flex; justify-content: space-around">
             {% if content %}
                 <div style="width:75%; max-width: 600px;">
-                    {{content|without('all_docs')}}
+                    {{content|without('related_docs', 'all_docs',  'field_documentation_topics')}}
                 </div>
             {% endif %}
 
-            {% if content.all_docs %}
+            {% if content.related_docs %}
                 <div style="width:20%;">
                     <fieldset>
-                        <legend>{{ 'All Documentation'|t }}</legend>
+                        <legend>{{ 'Related Documentations'|t }}</legend>
                         <div>
-                            {{ content.all_docs }}
+                            {{ content.related_docs }}
                         </div>
                     </fieldset>
-                    {#                  <h2>All Documentation</h2>#}
-
                 </div>
             {% endif %}
         </div>
-
     {% else %}
-
-
-
-
         {% if content %}
             {{content}}
         {% endif %}
-
     {% endif %}
 </div>
 
