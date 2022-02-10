@@ -22,14 +22,14 @@
         <div style="display: flex; justify-content: space-around">
             {% if content %}
                 <div style="width:75%; max-width: 600px;">
-                    {{content|without('related_docs', 'all_docs',  'field_documentation_topics')}}
+                    {{content|without('related_docs', 'field_documentation_topics')}}
                 </div>
             {% endif %}
 
             {% if content.related_docs %}
                 <div style="width:20%;">
                     <fieldset>
-                        <legend>{{ 'Related Documentations'|t }}</legend>
+                        <legend>{{ 'Related Documentation'|t }}</legend>
                         <div>
                             {{ content.related_docs }}
                         </div>
