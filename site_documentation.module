@@ -42,7 +42,7 @@ function site_documentation_theme($existing, $type, $theme, $path) {
 function site_documentation_site_documentation_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   if ($build['#view_mode'] !== 'full'
     || !$entity->hasField('field_documentation_topics')
-    || !$entity->get('field_documentation_topics')->isEmpty()
+    || $entity->get('field_documentation_topics')->isEmpty()
     || !Views::getView('related_site_documents')
   ) {
     return;
