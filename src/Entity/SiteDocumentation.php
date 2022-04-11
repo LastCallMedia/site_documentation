@@ -239,4 +239,13 @@ class SiteDocumentation extends EditorialContentEntityBase {
     return $fields;
   }
 
+  /**
+   * Get summary from field_description.
+   */
+  public function getSummary() {
+    if ($this->hasField('field_documentation') && !$this->get('field_documentation')->isEmpty()) {
+      return ($this->get('field_documentation')->view(['type' => 'text_summary_or_trimmed', 'label' => 'hidden']));
+    }
+    return [];
+  }
 }

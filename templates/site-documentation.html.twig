@@ -22,6 +22,12 @@
         <div style="display: flex; justify-content: space-around">
             {% if content %}
                 <div style="width:75%; max-width: 600px;">
+                  <div class="card">
+                    <div class="card__content-wrapper">
+                      <div class="field__label">Summary</div>
+                      {{ elements['#site_documentation'].getSummary() }}
+                    </div>
+                  </div>
                     {{content|without('related_docs', 'field_documentation_topics')}}
                 </div>
             {% endif %}
