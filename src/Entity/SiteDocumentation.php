@@ -158,7 +158,6 @@ class SiteDocumentation extends EditorialContentEntityBase {
     return parent::save();
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -179,6 +178,7 @@ class SiteDocumentation extends EditorialContentEntityBase {
         'label' => 'hidden',
         'type' => 'author',
         'weight' => 0,
+        'region' => 'hidden'
       ])
       ->setDisplayOptions('form', [
         'type' => 'entity_reference_autocomplete',
@@ -190,8 +190,8 @@ class SiteDocumentation extends EditorialContentEntityBase {
           'placeholder' => '',
         ],
       ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
@@ -235,12 +235,6 @@ class SiteDocumentation extends EditorialContentEntityBase {
       ->setReadOnly(TRUE)
       ->setRevisionable(TRUE)
       ->setTranslatable(TRUE);
-
-    $fields['all_docs'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel('Computed Reference Field Test')
-      ->setComputed(TRUE)
-      ->setSetting('target_type', 'site_documentation')
-      ->setClass(DocsListing::class);
 
     return $fields;
   }

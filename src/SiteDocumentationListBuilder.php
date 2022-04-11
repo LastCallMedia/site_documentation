@@ -51,4 +51,14 @@ class SiteDocumentationListBuilder extends EntityListBuilder {
     return $ops;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function render() {
+    $build['#prefix'] = Link::createFromRoute(
+      $this->t('Add Site Documentation'),
+      'entity.site_documentation.add_form', [], ['attributes' => ['class' => 'button button--action button--primary']])->toString();
+    return $build + parent::render();
+  }
+
 }

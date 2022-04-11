@@ -1,14 +1,16 @@
+uuid: dee4902e-2867-4b38-95dd-91644b0bde0d
 langcode: en
 status: true
 dependencies:
   module:
     - site_documentation
-id: site_documentation.field_related_documentation
-field_name: field_related_documentation
+    - taxonomy
+id: site_documentation.field_documentation_topics
+field_name: field_documentation_topics
 entity_type: site_documentation
 type: entity_reference
 settings:
-  target_type: site_documentation
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: -1
