@@ -35,5 +35,13 @@ function site_documentation_update_9002() {
 
   // Install default configuration for module.
   $config_installer->installDefaultConfig('module', 'site_documentation');
+}
 
+/**
+ * Install default module config.
+ */
+function site_documentation_update_9003() {
+  // Install default configuration for module.
+  $config_installer = \Drupal::service('config.installer');
+  $config_installer->installDefaultConfig('module', 'site_documentation');
 }
