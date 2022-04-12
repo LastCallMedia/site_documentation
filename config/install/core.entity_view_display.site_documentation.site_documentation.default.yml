@@ -9,41 +9,33 @@ dependencies:
     - site_documentation
     - text
 _core:
-  default_config_hash: sRsJLcDDRJMxxIwYaTrFCzqQQasGEJJtIrAyu3hHwRM
+  default_config_hash: tL88yIq59o6bflVug7aUnWPBB2P35XCDP56Ys_5b-KE
 id: site_documentation.site_documentation.default
 targetEntityType: site_documentation
 bundle: site_documentation
 mode: default
 content:
   field_documentation:
-    weight: 2
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 2
     region: content
   field_documentation_topics:
-    weight: 3
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
     type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
     region: content
   name:
-    label: hidden
     type: string
-    weight: 0
-    region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    type: entity_reference_label
-    weight: 1
+    weight: 0
     region: content
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
 hidden: {  }

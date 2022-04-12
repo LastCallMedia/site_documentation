@@ -19,30 +19,34 @@
 
 <div{{ attributes.addClass('site_documentation') }}>
     {% if view_mode == 'full' %}
-        <div style="display: flex; justify-content: space-around">
-            {% if content %}
-                <div style="width:75%; max-width: 600px;">
-                  <div class="card">
-                    <div class="card__content-wrapper">
-                      <div class="field__label">Summary</div>
-                      {{ elements['#site_documentation'].getSummary() }}
-                    </div>
-                  </div>
-                    {{content|without('related_docs', 'field_documentation_topics')}}
+      <div class="site-documentation--full">
+        <div class="site-documentation--content-wrap">
+          {% if content %}
+            <div class="site-documentation--content">
+              <div class="card">
+                <div class="card__content-wrapper">
+                  <div class="field__label">Summary</div>
+                  {{ elements['#site_documentation'].getSummary() }}
                 </div>
-            {% endif %}
+              </div>
+              {{content|without('related_docs')}}
+            </div>
+          {% endif %}
 
-            {% if content.related_docs %}
-                <div style="width:20%;">
-                    <fieldset>
-                        <legend>{{ 'Related Documentation'|t }}</legend>
-                        <div>
-                            {{ content.related_docs }}
-                        </div>
-                    </fieldset>
+          {% if content.related_docs %}
+            <div class="site-documentation--related">
+              <div class="card">
+                <div class="card__content-wrapper">
+                  <h2>{{ 'Related Documentation'|t }}</h2>
+                  <div>
+                    {{ content.related_docs }}
+                  </div>
                 </div>
-            {% endif %}
+              </div>
+            </div>
+          {% endif %}
         </div>
+      </div>
     {% else %}
         {% if content %}
             {{content}}
