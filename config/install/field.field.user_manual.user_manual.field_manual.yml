@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user_manual.field_manual
+  module:
+    - user_manual
+    - text
+id: user_manual.user_manual.field_manual
+field_name: field_manual
+entity_type: user_manual
+bundle: user_manual
+label: Manual
+description: "<strong>Summary</strong>: A brief description of what will appear on the help page.<br>\r\n<strong>User Manual</strong>: The actual help article that the user will see when they view this content directly."
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: true
+field_type: text_with_summary

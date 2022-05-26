@@ -1,40 +1,40 @@
 <?php
 
-namespace Drupal\site_documentation\Plugin\HelpSection;
+namespace Drupal\user_manual\Plugin\HelpSection;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\help\Plugin\HelpSection\HelpSectionPluginBase;
-use Drupal\site_documentation\Entity\SiteDocumentation;
+use Drupal\user_manual\Entity\UserManual;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides the help topics list section for the help page.
  *
  * @HelpSection(
- *   id = "site_documentation",
- *   title = @Translation("Site Documentation"),
+ *   id = "user_manual",
+ *   title = @Translation("User Manual"),
  *   weight = -100,
- *   description = @Translation("Documentation specific to this site."),
- *   permission = "access site_documentation help section"
+ *   description = @Translation("User Manual specific to this site."),
+ *   permission = "access user_manual help section"
  * )
  */
-class SiteDocumentationSection extends HelpSectionPluginBase implements ContainerFactoryPluginInterface {
+class UserManualSection extends HelpSectionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Documentation entity type id.
+   * User Manual entity type id.
    */
-  const ENTITY_TYPE = 'site_documentation';
+  const ENTITY_TYPE = 'user_manual';
 
   /**
-   * Entity storage for site_documentation entities.
+   * Entity storage for user_manual entities.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   protected $entityStorage;
 
   /**
-   * View builder for site_documentation entities.
+   * View builder for user_manual entities.
    *
    * @var \Drupal\Core\Entity\EntityViewBuilderInterface
    */
@@ -68,17 +68,17 @@ class SiteDocumentationSection extends HelpSectionPluginBase implements Containe
     // View nodes individually because of the rendering optimizations of
     // viewMultiple do not play nicely with the simple array format needed
     // for help content.
-    return array_map(function (SiteDocumentation $doc) {
+    return array_map(function (UserManual $doc) {
       return $this->viewBuilder->view($doc, 'teaser');
-    }, $this->getSortedDocumentationEntities());
+    }, $this->getSortedManualEntities());
   }
 
   /**
    * Sort entities alphabetically.
    */
-  protected function getSortedDocumentationEntities() {
+  protected function getSortedManualEntities() {
     $entities = $this->entityStorage->loadMultiple();
-    usort($entities, function (SiteDocumentation $a, SiteDocumentation $b) {
+    usort($entities, function (UserManual $a, UserManual $b) {
       return strcasecmp($a->label(), $b->label());
     });
     return $entities;

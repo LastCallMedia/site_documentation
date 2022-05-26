@@ -1,0 +1,26 @@
+# User Manual routing definition
+entity.user_manual.collection:
+  route_name: entity.user_manual.collection
+  base_route: entity.user_manual.collection
+  title: 'User Manual'
+
+entity.user_manual.canonical:
+  route_name: entity.user_manual.canonical
+  base_route: entity.user_manual.canonical
+  title: 'View'
+
+entity.user_manual.edit_form:
+  route_name: entity.user_manual.edit_form
+  base_route: entity.user_manual.canonical
+  title: 'Edit'
+
+entity.user_manual.version_history:
+  route_name: entity.user_manual.version_history
+  base_route: entity.user_manual.canonical
+  title: 'Revisions'
+
+entity.user_manual.delete_form:
+  route_name:  entity.user_manual.delete_form
+  base_route:  entity.user_manual.canonical
+  title: Delete
+  weight: 10

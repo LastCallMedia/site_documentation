@@ -2,19 +2,19 @@
 
 /**
  * @file
- * Site Documentation module file.
+ * User Manual module file.
  */
 
 use Drupal\Core\Render\Element;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\site_documentation\Entity\SiteDocumentation;
+use Drupal\user_manual\Entity\UserManual;
 use Drupal\views\Views;
 
 /**
  * Implements hook_module_implements_alter().
  */
-function site_documentation_module_implements_alter(&$implementations, $hook) {
+function user_manual_module_implements_alter(&$implementations, $hook) {
   if ($hook === 'help' && isset($implementations['help'])) {
     unset($implementations['help']);
   }
@@ -23,12 +23,12 @@ function site_documentation_module_implements_alter(&$implementations, $hook) {
 /**
  * Implements hook_theme().
  */
-function site_documentation_theme($existing, $type, $theme, $path) {
+function user_manual_theme($existing, $type, $theme, $path) {
   return [
-    'site_documentation' => [
+    'user_manual' => [
       'render element' => 'elements',
     ],
-    'help_section__site_documentation' => [
+    'help_section__user_manual' => [
       'variables' => [
         'documents_view' => null,
       ],
@@ -39,23 +39,23 @@ function site_documentation_theme($existing, $type, $theme, $path) {
 /**
  * Implements hook_entity_type_build().
  */
-function site_documentation_site_documentation_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+function user_manual_user_manual_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   if ($build['#view_mode'] !== 'full'
-    || !$entity->hasField('field_documentation_topics')
-    || $entity->get('field_documentation_topics')->isEmpty()
-    || !Views::getView('related_site_documents')
+    || !$entity->hasField('field_manual_topics')
+    || $entity->get('field_manual_topics')->isEmpty()
+    || !Views::getView('related_user_manuals')
   ) {
     return;
   }
 
   $topics = array_map(function ($topic) {
     return $topic['target_id'];
-  }, $entity->get('field_documentation_topics')->getValue());
+  }, $entity->get('field_manual_topics')->getValue());
 
   if (!empty($topics)) {
     $build['related_docs'] = [
       '#type' => 'view',
-      '#name' => 'related_site_documents',
+      '#name' => 'related_user_manuals',
       '#display_id' => 'block_1',
       '#embed' => TRUE,
       '#arguments' => [implode('+', $topics), $entity->id()],
@@ -66,7 +66,7 @@ function site_documentation_site_documentation_view(array &$build, EntityInterfa
 /**
  * Add useful variables for template.
  */
-function site_documentation_preprocess_site_documentation(&$vars) {
+function user_manual_preprocess_user_manual(&$vars) {
   $vars['view_mode'] = $vars['elements']['#view_mode'];
   // Helpful $content variable for templates.
   $vars += ['content' => []];
@@ -78,11 +78,11 @@ function site_documentation_preprocess_site_documentation(&$vars) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function site_documentation_preprocess_help_section__site_documentation(&$vars) {
-  if (Views::getView('related_site_documents')) {
+function user_manual_preprocess_help_section__user_manual(&$vars) {
+  if (Views::getView('related_user_manuals')) {
     $vars['documents_view'] = [
       '#type' => 'view',
-      '#name' => 'related_site_documents',
+      '#name' => 'related_user_manuals',
       '#display_id' => 'block_2',
       '#embed' => TRUE,
       '#arguments' => [],
@@ -93,7 +93,7 @@ function site_documentation_preprocess_help_section__site_documentation(&$vars) 
 /**
  * Implements hook_help_section_info_alter().
  */
-function site_documentation_help_section_info_alter(array &$info) {
+function user_manual_help_section_info_alter(array &$info) {
   foreach ($info as $plugin_id => $plugin_info) {
     if (empty($info[$plugin_id]['permission'])) {
       $info[$plugin_id]['permission'] = 'access ' . $plugin_id . ' help section';
@@ -104,14 +104,14 @@ function site_documentation_help_section_info_alter(array &$info) {
 /**
  * Implements hook_theme_suggestions_alter().
  */
-function site_documentation_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+function user_manual_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
   if ($hook !== 'help_section') {
     return;
   }
 
-  if ($variables['title']->render() === 'Site Documentation') {
+  if ($variables['title']->render() === 'User Manual') {
     // Both lines below are needed.
-    $suggestions[] = 'help_section__site_documentation';
-    $variables['theme_hook_original'] = 'help_section__site_documentation';
+    $suggestions[] = 'help_section__user_manual';
+    $variables['theme_hook_original'] = 'help_section__user_manual';
   }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace Drupal\site_documentation\Form;
+namespace Drupal\user_manual\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Form controller for Site Documentation edit forms.
+ * Form controller for User Manual edit forms.
  *
- * @ingroup site_documentation
+ * @ingroup user_manual
  */
-class SiteDocumentationForm extends ContentEntityForm {
+class UserManualForm extends ContentEntityForm {
 
   /**
    * The current user account.
@@ -34,7 +34,7 @@ class SiteDocumentationForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /** @var \Drupal\site_documentation\Entity\SiteDocumentation $entity */
+    /** @var \Drupal\user_manual\Entity\UserManual $entity */
     $form = parent::buildForm($form, $form_state);
 
     if (!$this->entity->isNew()) {
@@ -91,17 +91,17 @@ class SiteDocumentationForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        $this->messenger()->addMessage($this->t('Created the %label Site Documentation.', [
+        $this->messenger()->addMessage($this->t('Created the %label User Manual.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        $this->messenger()->addMessage($this->t('Saved the %label Site Documentation.', [
+        $this->messenger()->addMessage($this->t('Saved the %label User Manual.', [
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.site_documentation.canonical', ['site_documentation' => $entity->id()]);
+    $form_state->setRedirect('entity.user_manual.canonical', ['user_manual' => $entity->id()]);
   }
 
 }

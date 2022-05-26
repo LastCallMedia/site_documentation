@@ -1,31 +1,31 @@
-/* Site Documentation Entity - full display */
-.site-documentation--full {
+/* User Manual Entity - full display */
+.user-manual--full {
   margin-left: auto;
   margin-right: auto;
   max-width: 1400px;
 
 }
-.site-documentation--related {
+.user-manual--related {
   margin-top: 3rem;
 }
 @media screen and (min-width: 60em) {
-  .site-documentation--content-wrap {
+  .user-manual--content-wrap {
     display: grid;
     grid-gap: 4rem;
     grid-template-columns: repeat(12,minmax(0,1fr));
   }
-  .site-documentation--content {
+  .user-manual--content {
     grid-column-start: 1;
     grid-column: span 7;
   }
-  .site-documentation--related {
+  .user-manual--related {
     margin-top: 0;
     grid-column-start: 7;
     grid-column: span 5;
   }
 }
 
-/* Related Documents - on Site Documentation full display */
+/* Related Documents - on User Manual full display */
 .view-related-site-documents.view-display-id-block_1 .item-list ul {
   margin-left: 0;
 }
@@ -33,7 +33,7 @@
   margin-bottom: 1rem;
 }
 
-/* Site Documentation list*/
+/* User Manual list*/
 .view-related-site-documents.view-display-id-block_2 ul li {
   margin-bottom: 1rem;
 }

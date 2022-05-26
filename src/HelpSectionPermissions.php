@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\site_documentation;
+namespace Drupal\user_manual;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;

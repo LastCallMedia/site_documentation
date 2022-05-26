@@ -1,0 +1,7 @@
+name: 'User Manual'
+type: module
+description: 'Allows content to be added to help section as manual'
+core_version_requirement: ^8 || ^9
+dependencies:
+  - drupal:help
+  - entity:entity

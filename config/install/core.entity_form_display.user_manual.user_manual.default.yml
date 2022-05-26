@@ -1,21 +1,20 @@
-uuid: ef4b3210-8f00-49e5-98e8-c72fc1865f74
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.site_documentation.site_documentation.field_documentation
-    - field.field.site_documentation.site_documentation.field_documentation_topics
+    - field.field.user_manual.user_manual.field_manual
+    - field.field.user_manual.user_manual.field_manual_topics
   module:
-    - site_documentation
+    - user_manual
     - text
 _core:
-  default_config_hash: pCuErAFP_am3JBBp-xxkV3u-d4x5GvV6HydLQ5kHBKI
-id: site_documentation.site_documentation.default
-targetEntityType: site_documentation
-bundle: site_documentation
+  default_config_hash: pCuErAFP_am3JBBp-leoV3u-d4x5GvV6HydLQ5kHBKI
+id: user_manual.user_manual.default
+targetEntityType: user_manual
+bundle: user_manual
 mode: default
 content:
-  field_documentation:
+  field_manual:
     type: text_textarea_with_summary
     weight: 26
     region: content
@@ -25,7 +24,7 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-  field_documentation_topics:
+  field_manual_topics:
     type: options_select
     weight: 27
     region: content

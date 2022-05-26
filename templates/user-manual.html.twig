@@ -1,32 +1,32 @@
 {#
 /**
- * @file site_documentation.html.twig
- * Default theme implementation to present Site Documentation data.
+ * @file user_manual.html.twig
+ * Default theme implementation to present User Manual data.
  *
- * This template is used when viewing Site Documentation pages.
+ * This template is used when viewing User Manual pages.
  *
  *
  * Available variables:
  * - content: A list of content items. Use 'content' to print all content, or
  * - attributes: HTML attributes for the container element.
  *
- * @see template_preprocess_site_documentation()
+ * @see template_preprocess_user_manual()
  *
  * @ingroup themeable
  */
 #}
-{{ attach_library("site_documentation/site_documentations_list") }}
+{{ attach_library("user_manual/user_manuals_list") }}
 
-<div{{ attributes.addClass('site_documentation') }}>
+<div{{ attributes.addClass('user_manual') }}>
     {% if view_mode == 'full' %}
-      <div class="site-documentation--full">
-        <div class="site-documentation--content-wrap">
+      <div class="user-manual--full">
+        <div class="user-manual--content-wrap">
           {% if content %}
-            <div class="site-documentation--content">
+            <div class="user-manual--content">
               <div class="card">
                 <div class="card__content-wrapper">
                   <div class="field__label">Summary</div>
-                  {{ elements['#site_documentation'].getSummary() }}
+                  {{ elements['#user_manual'].getSummary() }}
                 </div>
               </div>
               {{content|without('related_docs')}}
@@ -34,10 +34,10 @@
           {% endif %}
 
           {% if content.related_docs %}
-            <div class="site-documentation--related">
+            <div class="user-manual--related">
               <div class="card">
                 <div class="card__content-wrapper">
-                  <h2>{{ 'Related Documentation'|t }}</h2>
+                  <h2>{{ 'Related User Manual'|t }}</h2>
                   <div>
                     {{ content.related_docs }}
                   </div>

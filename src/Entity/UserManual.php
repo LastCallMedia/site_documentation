@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\site_documentation\Entity;
+namespace Drupal\user_manual\Entity;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -10,25 +10,25 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityPublishedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
-use Drupal\site_documentation\DocsListing;
+use Drupal\user_manual\DocsListing;
 
 /**
- * Defines the Site Documentation entity.
+ * Defines the User Manual entity.
  *
- * @ingroup site_documentation
+ * @ingroup user_manual
  *
  * @ContentEntityType(
- *   id = "site_documentation",
- *   label = @Translation("Site Documentation"),
+ *   id = "user_manual",
+ *   label = @Translation("User Manual"),
  *   handlers = {
  *     "storage" = "Drupal\Core\Entity\Sql\SqlContentEntityStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\site_documentation\SiteDocumentationListBuilder",
+ *     "list_builder" = "Drupal\user_manual\UserManualListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "translation" = "Drupal\content_translation\ContentTranslationHandler",
  *
  *     "form" = {
- *       "default" = "Drupal\site_documentation\Form\SiteDocumentationForm",
+ *       "default" = "Drupal\user_manual\Form\UserManualForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "route_provider" = {
@@ -38,12 +38,12 @@ use Drupal\site_documentation\DocsListing;
  *     "access" = "Drupal\entity\EntityAccessControlHandler",
  *     "permission_provider" = "Drupal\entity\EntityPermissionProvider",
  *   },
- *   base_table = "site_documentation",
- *   data_table = "site_documentation_field_data",
- *   revision_table = "site_documentation_revision",
- *   revision_data_table = "site_documentation_field_revision",
+ *   base_table = "user_manual",
+ *   data_table = "user_manual_field_data",
+ *   revision_table = "user_manual_revision",
+ *   revision_data_table = "user_manual_field_revision",
  *   translatable = TRUE,
- *   admin_permission = "administer site documentation entities",
+ *   admin_permission = "administer user manual entities",
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "vid",
@@ -59,19 +59,19 @@ use Drupal\site_documentation\DocsListing;
  *     "revision_log_message" = "revision_log"
  *   },
  *   links = {
- *     "canonical" = "/admin/help/{site_documentation}",
- *     "add-form" = "/admin/help/site_documentation/add",
- *     "edit-form" = "/admin/help/site_documentation/{site_documentation}/edit",
- *     "delete-form" = "/admin/help/site_documentation/{site_documentation}/delete",
- *     "version-history" = "/admin/help/site_documentation/{site_documentation}/revisions",
- *     "revision" = "/admin/help/site_documentation/{site_documentation}/revisions/{site_documentation_revision}/view",
- *     "revision-revert-form" = "/admin/help/site_documentation/{site_documentation}/revisions/{site_documentation_revision}/revert",
- *     "collection" = "/admin/help/site_documentation",
+ *     "canonical" = "/admin/help/{user_manual}",
+ *     "add-form" = "/admin/help/user_manual/add",
+ *     "edit-form" = "/admin/help/user_manual/{user_manual}/edit",
+ *     "delete-form" = "/admin/help/user_manual/{user_manual}/delete",
+ *     "version-history" = "/admin/help/user_manual/{user_manual}/revisions",
+ *     "revision" = "/admin/help/user_manual/{user_manual}/revisions/{user_manual_revision}/view",
+ *     "revision-revert-form" = "/admin/help/user_manual/{user_manual}/revisions/{user_manual_revision}/revert",
+ *     "collection" = "/admin/help/user_manual",
  *   },
- *   field_ui_base_route = "entity.site_documentation.collection"
+ *   field_ui_base_route = "entity.user_manual.collection"
  * )
  */
-class SiteDocumentation extends EditorialContentEntityBase {
+class UserManual extends EditorialContentEntityBase {
 
   use EntityChangedTrait;
   use EntityPublishedTrait;
@@ -169,7 +169,7 @@ class SiteDocumentation extends EditorialContentEntityBase {
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Authored by'))
-      ->setDescription(t('The user ID of author of the Site Documentation entity.'))
+      ->setDescription(t('The user ID of author of the User Manual entity.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
@@ -195,7 +195,7 @@ class SiteDocumentation extends EditorialContentEntityBase {
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
-      ->setDescription(t('The name of the Site Documentation entity.'))
+      ->setDescription(t('The name of the User Manual entity.'))
       ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 50,
@@ -215,7 +215,7 @@ class SiteDocumentation extends EditorialContentEntityBase {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
-    $fields['status']->setDescription(t('A boolean indicating whether the Site Documentation is published.'))
+    $fields['status']->setDescription(t('A boolean indicating whether the User Manual is published.'))
       ->setDisplayOptions('form', [
         'type' => 'boolean_checkbox',
         'weight' => -3,
@@ -243,8 +243,8 @@ class SiteDocumentation extends EditorialContentEntityBase {
    * Get summary from field_description.
    */
   public function getSummary() {
-    if ($this->hasField('field_documentation') && !$this->get('field_documentation')->isEmpty()) {
-      return ($this->get('field_documentation')->view(['type' => 'text_summary_or_trimmed', 'label' => 'hidden']));
+    if ($this->hasField('field_manual') && !$this->get('field_manual')->isEmpty()) {
+      return ($this->get('field_manual')->view(['type' => 'text_summary_or_trimmed', 'label' => 'hidden']));
     }
     return [];
   }

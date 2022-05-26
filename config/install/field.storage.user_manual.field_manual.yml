@@ -2,11 +2,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - site_documentation
+    - user_manual
     - text
-id: site_documentation.field_documentation
-field_name: field_documentation
-entity_type: site_documentation
+id: user_manual.field_manual
+field_name: field_manual
+entity_type: user_manual
 type: text_with_summary
 settings: {  }
 module: text
