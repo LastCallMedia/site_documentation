@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\site_documentation;
+namespace Drupal\user_manual;
 
 use Drupal\Core\Field\EntityReferenceFieldItemList;
-use Drupal\site_documentation\Entity\SiteDocumentation;
+use Drupal\user_manual\Entity\UserManual;
 use Drupal\Core\TypedData\ComputedItemListTrait;
 
 /**
- * Computed field value loading _all_ documentation.
+ * Computed field value loading _all_ manual.
  */
 class DocsListing extends EntityReferenceFieldItemList {
 
@@ -17,7 +17,7 @@ class DocsListing extends EntityReferenceFieldItemList {
    * Compute the values.
    */
   protected function computeValue() {
-    $site_docs = SiteDocumentation::loadMultiple();
+    $site_docs = UserManual::loadMultiple();
 
     foreach ($site_docs as $delta => $value) {
       $this->list[$delta] = $this->createItem($delta, $value);

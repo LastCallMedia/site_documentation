@@ -1,0 +1,4 @@
+user_manuals_list:
+  css:
+    theme:
+      css/user_manual.css: { }

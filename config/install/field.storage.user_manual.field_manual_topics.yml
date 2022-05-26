@@ -1,13 +1,12 @@
-uuid: dee4902e-2867-4b38-95dd-91644b0bde0d
 langcode: en
 status: true
 dependencies:
   module:
-    - site_documentation
+    - user_manual
     - taxonomy
-id: site_documentation.field_documentation_topics
-field_name: field_documentation_topics
-entity_type: site_documentation
+id: user_manual.field_manual_topics
+field_name: field_manual_topics
+entity_type: user_manual
 type: entity_reference
 settings:
   target_type: taxonomy_term

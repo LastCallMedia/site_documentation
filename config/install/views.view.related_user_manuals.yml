@@ -1,22 +1,21 @@
-uuid: f3a68efa-04be-460a-9251-a22aa265ff9c
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.site_documentation.teaser
-    - field.storage.site_documentation.field_documentation_topics
-    - taxonomy.vocabulary.documentation_topics
+    - core.entity_view_mode.user_manual.teaser
+    - field.storage.user_manual.field_manual_topics
+    - taxonomy.vocabulary.manual_topics
   module:
-    - site_documentation
+    - user_manual
     - taxonomy
 _core:
-  default_config_hash: '-5rw2qVoEDeOJIIhNW9fDrkthM5t_WUiV3seILhDubg'
-id: related_site_documents
-label: 'Site Documents'
+  default_config_hash: '-5rw2qVoEDeOJleohNW9fDrkthM5t_WUiV3seILhDubg'
+id: related_user_manuals
+label: 'User Manuals'
 module: views
 description: ''
 tag: ''
-base_table: site_documentation_field_data
+base_table: user_manual_field_data
 base_field: id
 display:
   default:
@@ -25,11 +24,11 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Related Site Documents'
+      title: 'Related User Manuals'
       fields:
         name:
           id: name
-          table: site_documentation_field_data
+          table: user_manual_field_data
           field: name
           relationship: none
           group_type: group
@@ -91,10 +90,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_documentation_topics:
-          id: field_documentation_topics
-          table: site_documentation__field_documentation_topics
-          field: field_documentation_topics
+        field_manual_topics:
+          id: field_manual_topics
+          table: user_manual__field_manual_topics
+          field: field_manual_topics
           relationship: none
           group_type: group
           admin_label: ''
@@ -177,10 +176,10 @@ display:
         options: {  }
       empty: {  }
       sorts:
-        field_documentation_topics_target_id:
-          id: field_documentation_topics_target_id
-          table: site_documentation__field_documentation_topics
-          field: field_documentation_topics_target_id
+        field_manual_topics_target_id:
+          id: field_manual_topics_target_id
+          table: user_manual__field_manual_topics
+          field: field_manual_topics_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -192,12 +191,12 @@ display:
           exposed: false
         name:
           id: name
-          table: site_documentation_field_data
+          table: user_manual_field_data
           field: name
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: site_documentation
+          entity_type: user_manual
           entity_field: name
           plugin_id: standard
           order: ASC
@@ -206,10 +205,10 @@ display:
             field_identifier: ''
           exposed: false
       arguments:
-        field_documentation_topics_target_id:
-          id: field_documentation_topics_target_id
-          table: site_documentation__field_documentation_topics
-          field: field_documentation_topics_target_id
+        field_manual_topics_target_id:
+          id: field_manual_topics_target_id
+          table: user_manual__field_manual_topics
+          field: field_manual_topics_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -243,12 +242,12 @@ display:
           not: false
         id:
           id: id
-          table: site_documentation_field_data
+          table: user_manual_field_data
           field: id
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: site_documentation
+          entity_type: user_manual
           entity_field: id
           plugin_id: numeric
           default_action: default
@@ -280,9 +279,9 @@ display:
       filters:
         status:
           id: status
-          table: site_documentation_field_data
+          table: user_manual_field_data
           field: status
-          entity_type: site_documentation
+          entity_type: user_manual
           entity_field: status
           plugin_id: boolean
           value: '1'
@@ -296,7 +295,7 @@ display:
         options:
           grouping:
             -
-              field: field_documentation_topics
+              field: field_manual_topics
               rendered: true
               rendered_strip: false
           row_class: ''
@@ -306,7 +305,7 @@ display:
           wrapper_class: item-list
           class: ''
       row:
-        type: 'entity:site_documentation'
+        type: 'entity:user_manual'
         options:
           relationship: none
           view_mode: teaser
@@ -331,7 +330,7 @@ display:
         - 'languages:language_interface'
         - url
       tags:
-        - 'config:field.storage.site_documentation.field_documentation_topics'
+        - 'config:field.storage.user_manual.field_manual_topics'
   block_1:
     id: block_1
     display_title: 'Related Documents'
@@ -341,7 +340,7 @@ display:
       fields:
         name:
           id: name
-          table: site_documentation_field_data
+          table: user_manual_field_data
           field: name
           relationship: none
           group_type: group
@@ -403,10 +402,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_documentation_topics:
-          id: field_documentation_topics
-          table: site_documentation__field_documentation_topics
-          field: field_documentation_topics
+        field_manual_topics:
+          id: field_manual_topics
+          table: user_manual__field_manual_topics
+          field: field_manual_topics
           relationship: none
           group_type: group
           admin_label: ''
@@ -479,17 +478,17 @@ display:
         - 'languages:language_interface'
         - url
       tags:
-        - 'config:field.storage.site_documentation.field_documentation_topics'
+        - 'config:field.storage.user_manual.field_manual_topics'
   block_2:
     id: block_2
-    display_title: 'All Site Documents'
+    display_title: 'All User Manuals'
     display_plugin: block
     position: 1
     display_options:
       fields:
         name:
           id: name
-          table: site_documentation_field_data
+          table: user_manual_field_data
           field: name
           relationship: none
           group_type: group
@@ -551,10 +550,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_documentation_topics:
-          id: field_documentation_topics
-          table: site_documentation__field_documentation_topics
-          field: field_documentation_topics
+        field_manual_topics:
+          id: field_manual_topics
+          table: user_manual__field_manual_topics
+          field: field_manual_topics
           relationship: none
           group_type: group
           admin_label: ''
@@ -636,9 +635,9 @@ display:
       filters:
         status:
           id: status
-          table: site_documentation_field_data
+          table: user_manual_field_data
           field: status
-          entity_type: site_documentation
+          entity_type: user_manual
           entity_field: status
           plugin_id: boolean
           value: '1'
@@ -647,10 +646,10 @@ display:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-        field_documentation_topics_target_id:
-          id: field_documentation_topics_target_id
-          table: site_documentation__field_documentation_topics
-          field: field_documentation_topics_target_id
+        field_manual_topics_target_id:
+          id: field_manual_topics_target_id
+          table: user_manual__field_manual_topics
+          field: field_manual_topics_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -660,14 +659,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_documentation_topics_target_id_op
+            operator_id: field_manual_topics_target_id_op
             label: 'Filter By Topics'
             description: ''
             use_operator: false
-            operator: field_documentation_topics_target_id_op
+            operator: field_manual_topics_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_documentation_topics_target_id
+            identifier: field_manual_topics_target_id
             required: false
             remember: false
             multiple: false
@@ -690,7 +689,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-          vid: documentation_topics
+          vid: manual_topics
           type: select
           hierarchy: false
           limit: true
@@ -704,7 +703,7 @@ display:
         options:
           grouping:
             -
-              field: field_documentation_topics
+              field: field_manual_topics
               rendered: true
               rendered_strip: false
           row_class: ''
@@ -714,7 +713,7 @@ display:
           wrapper_class: ''
           class: ''
       row:
-        type: 'entity:site_documentation'
+        type: 'entity:user_manual'
         options:
           relationship: none
           view_mode: teaser
@@ -742,4 +741,4 @@ display:
         - url
         - user
       tags:
-        - 'config:field.storage.site_documentation.field_documentation_topics'
+        - 'config:field.storage.user_manual.field_manual_topics'

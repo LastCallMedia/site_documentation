@@ -1,11 +1,11 @@
 {
-  "name": "lastcall/site_documentation",
+  "name": "drupal/user_manual",
   "type": "drupal-module",
-  "description": "Allows content to be added to help section as documentation",
-  "homepage": "https://github.com/LastCallMedia/SiteDocumentation",
+  "description": "Allows content to be added to help section as manual",
+  "homepage": "https://drupal.org/project/user_manual",
   "support": {
-    "issues": "https://github.com/LastCallMedia/SiteDocumentation/issues",
-    "source": "https://github.com/LastCallMedia/SiteDocumentation"
+    "issues": "https://github.com/LastCallMedia/UserManual/issues",
+    "source": "https://github.com/LastCallMedia/UserManual"
   },
   "license": "GPL-2.0-or-later",
   "minimum-stability": "dev",

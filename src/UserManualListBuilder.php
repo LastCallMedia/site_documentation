@@ -1,23 +1,23 @@
 <?php
 
-namespace Drupal\site_documentation;
+namespace Drupal\user_manual;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Link;
 
 /**
- * Defines a class to build a listing of Site Documentation entities.
+ * Defines a class to build a listing of User Manual entities.
  *
- * @ingroup site_documentation
+ * @ingroup user_manual
  */
-class SiteDocumentationListBuilder extends EntityListBuilder {
+class UserManualListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Site Documentation ID');
+    $header['id'] = $this->t('User Manual ID');
     $header['name'] = $this->t('Name');
     return $header + parent::buildHeader();
   }
@@ -26,12 +26,12 @@ class SiteDocumentationListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /** @var \Drupal\site_documentation\Entity\SiteDocumentation $entity */
+    /** @var \Drupal\user_manual\Entity\UserManual $entity */
     $row['id'] = $entity->id();
     $row['name'] = Link::createFromRoute(
       $entity->label(),
-      'entity.site_documentation.canonical',
-      ['site_documentation' => $entity->id()]
+      'entity.user_manual.canonical',
+      ['user_manual' => $entity->id()]
     );
     return $row + parent::buildRow($entity);
   }
@@ -56,8 +56,8 @@ class SiteDocumentationListBuilder extends EntityListBuilder {
    */
   public function render() {
     $build['#prefix'] = Link::createFromRoute(
-      $this->t('Add Site Documentation'),
-      'entity.site_documentation.add_form', [], ['attributes' => ['class' => 'button button--action button--primary']])->toString();
+      $this->t('Add User Manual'),
+      'entity.user_manual.add_form', [], ['attributes' => ['class' => 'button button--action button--primary']])->toString();
     return $build + parent::render();
   }
 

@@ -1,0 +1,14 @@
+
+# User Manual menu items definition
+entity.user_manual.collection:
+  title: 'User Manual list'
+  route_name: entity.user_manual.collection
+  description: 'List User Manual entities'
+  parent: help.main
+  weight: 100
+
+#user_manual.admin.structure.settings:
+#  title: 'User Manual settings'
+#  description: 'Configure User Manual entities'
+#  route_name: user_manual.settings
+#  parent: help.main
