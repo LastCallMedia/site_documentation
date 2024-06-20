@@ -1,6 +1,6 @@
 # User Manual (Module for Drupal 9+)
 
-Allows administrators to create manual that lives within the help
+User Manual is brought to you by your friends at [Last Call Media](https://www.lastcallmedia.com), it allows administrators to create manual that lives within the help
 section of the site.
 
 The purpose of this project is to add a place within the site for manual
